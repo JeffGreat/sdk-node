@@ -41,7 +41,7 @@ module.exports = (cache) ->
 				method: method,
 				url: url,
 				headers: headers,
-				form: if options.json then options else null,
+				form: if !options.json then options else null,
 				json: options.json,
 				qs: get_options
 			}

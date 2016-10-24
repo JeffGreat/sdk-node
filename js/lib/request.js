@@ -52,7 +52,7 @@ module.exports = function(cache) {
         method: method,
         url: url,
         headers: headers,
-        form: options.json ? options : null,
+        form: !options.json ? options : null,
         json: options.json,
         qs: get_options
       };
