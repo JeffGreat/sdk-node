@@ -52,8 +52,8 @@ module.exports = function(cache) {
         method: method,
         url: url,
         headers: headers,
-        form: !options.json ? options : null,
-        json: options.json,
+        form: options && !options.json ? options : null,
+        json: options ? options.json : null,
         qs: get_options
       };
       request(options, function(error, r, body) {
