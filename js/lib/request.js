@@ -9,7 +9,7 @@ qs = require("querystring");
 module.exports = function(cache) {
   return {
     make_request: function(r, method, url, options) {
-      var defer, get_options, headers, k, ref, tokens;
+      var defer, get_options, headers, k, tokens;
       defer = Q.defer();
       if (r.error != null) {
         defer.reject(new Error('Not authenticated for provider \'' + r.provider + '\''));
@@ -52,11 +52,9 @@ module.exports = function(cache) {
         method: method,
         url: url,
         headers: headers,
-        form: (ref = !options.json) != null ? ref : {
-          options: void 0,
-          json: options.json,
-          qs: get_options
-        }
+        form: options.json ? options : null,
+        json: options.json,
+        qs: get_options
       };
       request(options, function(error, r, body) {
         var response;
