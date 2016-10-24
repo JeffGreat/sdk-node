@@ -41,13 +41,14 @@ module.exports = (cache) ->
 				method: method,
 				url: url,
 				headers: headers,
-				form: options,
+				form: !options.json ? options : undefined,
+				json: options.json,
 				qs: get_options
 			}
 
 			request(options, (error, r, body) ->
 				response = undefined
-				if body? and r.statusCode == 200
+				if body? and (r.statusCode == 200 or r.statusCode == 201)
 					if typeof body is 'string'
 						try
 							response = JSON.parse body
